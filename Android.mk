@@ -168,8 +168,8 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
         LOCAL_C_INCLUDES += $(LOCAL_PATH)/$(SH_PATH)
         LOCAL_C_INCLUDES += external/zlib
 
-        LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
-                            system/core/base/include
+        LOCAL_C_INCLUDES += system/core/base/include
+                            
 
         # Needs to be added after KERNEL_OBJ/usr/include
         ifeq ($(MOT_SENSOR_HUB_HW_TYPE_L4), true)
@@ -177,7 +177,7 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
         endif
 
         # Need the UAPI output directory to be populated with motosh.h/stml0xx.h
-        LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+        LOCAL_HEADER_LIBRARIES := generated_kernel_headers
 
         LOCAL_PRELINK_MODULE := false
         LOCAL_MODULE_RELATIVE_PATH := hw
@@ -201,9 +201,8 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
     LOCAL_SRC_FILES := $(SH_PATH)/sensorhub.c
     LOCAL_SRC_FILES += $(UTILS_PATH)/sensor_time.cpp
 
-    LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
     # Need the UAPI output directory to be populated with motosh.h/stml0xx.h
-    LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+    LOCAL_HEADER_LIBRARIES := generated_kernel_headers
 
     LOCAL_SHARED_LIBRARIES := libcutils libc libutils liblog
     LOCAL_MODULE := sensorhub.$(TARGET_BOARD_PLATFORM)
@@ -226,7 +225,6 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
         LOCAL_MODULE  := akmd09912
 
         LOCAL_C_INCLUDES := \
-            $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
             $(LOCAL_PATH)/$(AKM_PATH) \
             $(LOCAL_PATH)/$(AKM_PATH)/$(SMARTCOMPASS_LIB) \
             $(LOCAL_PATH)/$(SH_PATH)
@@ -313,11 +311,10 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
     endif
 
     LOCAL_C_INCLUDES := \
-        $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
         hardware/moto/sensors/libsensorhub
 
     # Need the UAPI output directory to be populated with motosh.h/stml0xx.h
-    LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+    LOCAL_HEADER_LIBRARIES := generated_kernel_headers
 
     include $(BUILD_EXECUTABLE)
 

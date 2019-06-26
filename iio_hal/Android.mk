@@ -45,7 +45,7 @@ LOCAL_C_INCLUDES += \
 
 # Needs to be added after KERNEL_OBJ/usr/include
 LOCAL_C_INCLUDES += kernel/motorola/msm8953/include
-
+LOCAL_HEADER_LIBRARIES := generated_kernel_headers
 LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 LOCAL_SHARED_LIBRARIES += libiio libcrypto

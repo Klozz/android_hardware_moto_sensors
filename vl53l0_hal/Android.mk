@@ -35,15 +35,14 @@ LOCAL_SRC_FILES := \
 
 LOCAL_C_INCLUDES += \
     $(LOCAL_PATH)/.. \
-    system/core/base/include \
-    $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+    system/core/base/include
 
 LOCAL_C_INCLUDES += external/zlib
 
-LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+LOCAL_HEADER_LIBRARIES := generated_kernel_headers
 
 # Needs to be added after KERNEL_OBJ/usr/include
-LOCAL_C_INCLUDES += kernel/include
+# LOCAL_C_INCLUDES += kernel/motorola/msm8953/include
 
 LOCAL_SHARED_LIBRARIES += liblog libcutils libutils libc libbase
 LOCAL_CFLAGS += -Wall -Wextra
